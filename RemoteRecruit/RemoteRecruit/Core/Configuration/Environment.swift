@@ -23,5 +23,5 @@ struct StagingEnvironment:
 EnvironmentProtocol {
 
     let baseURL =
-        "https://staging.remotive.com"
+        "https://remotive.com"
 }

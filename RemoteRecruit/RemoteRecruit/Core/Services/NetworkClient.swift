@@ -5,6 +5,9 @@
 //  Created by Kinjal Ughreja on 16/06/26.
 //
 
+// NetworkClient validates connectivity before making
+// any request and throws .noInternet when offline.
+
 import Foundation
 
 protocol NetworkSession {

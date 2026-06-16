@@ -5,6 +5,9 @@
 //  Created by Kinjal Ughreja on 16/06/26.
 //
 
+// ConnectivityMonitor continuously observes network state
+// using NWPathMonitor.
+
 import Foundation
 import Network
 
