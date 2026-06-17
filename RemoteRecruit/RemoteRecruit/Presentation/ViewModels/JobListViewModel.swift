@@ -5,6 +5,13 @@
 //  Created by Kinjal Ughreja on 16/06/26.
 //
 
+/// ViewModel for Job Listing.
+///
+/// Responsibilities:
+/// - Fetch jobs
+/// - Handle loading state
+/// - Handle errors
+/// - Search filtering
 import SwiftUI
 import Combine
 
@@ -33,21 +40,19 @@ final class JobListViewModel:ObservableObject {
         self.getJobsUseCase = getJobsUseCase
     }
     
-    func fetchJobs() {
-        Task {
-            do {
-                isLoading = true
-                jobs =
-                try await getJobsUseCase
-                    .execute()
-                print(jobs)
-                isLoading = false
-                
-            } catch {
-                isLoading = false
-                errorMessage =
-                error.localizedDescription
-            }
+    func fetchJobs() async {
+        do {
+            isLoading = true
+            jobs =
+            try await getJobsUseCase
+                .execute()
+            print(jobs)
+            isLoading = false
+            
+        } catch {
+            isLoading = false
+            errorMessage =
+            error.localizedDescription
         }
     }
 }

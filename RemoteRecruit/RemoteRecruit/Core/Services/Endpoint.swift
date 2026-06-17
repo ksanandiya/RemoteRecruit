@@ -4,6 +4,11 @@
 //
 //  Created by Kinjal Ughreja on 16/06/26.
 //
+
+/// API endpoint definitions.
+///
+/// Builds URL requests for network layer.
+
 import Foundation
 
 protocol Endpoint {

@@ -5,6 +5,11 @@
 //  Created by Kinjal Ughreja on 16/06/26.
 //
 
+/// Repository responsible for fetching jobs.
+///
+/// Acts as data source between
+/// NetworkClient and UseCases.
+
 import Foundation
 protocol JobRepositoryProtocol {
     func fetchJobs() async throws -> [Job]

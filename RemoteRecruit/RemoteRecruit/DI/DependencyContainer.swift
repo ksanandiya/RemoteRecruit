@@ -5,8 +5,15 @@
 //  Created by Kinjal Ughreja on 16/06/26.
 //
 
-// DependencyContainer creates and injects all
-// dependencies following Dependency Injection.
+/// DependencyContainer creates and injects all
+/// dependencies following Dependency Injection.
+
+/// Creates:
+/// - ConnectivityMonitor
+/// - NetworkClient
+/// - JobRepository
+/// - GetJobsUseCase
+/// - ViewModels
 
 import Foundation
 
@@ -48,5 +55,10 @@ final class DependencyContainer {
                 getJobsUseCase
         )
     }
+    func makeJobDetailViewModel(
+            job: Job
+        ) -> JobDetailViewModel {
+            JobDetailViewModel(job: job)
+        }
 
 }

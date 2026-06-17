@@ -5,9 +5,9 @@
 //  Created by Kinjal Ughreja on 16/06/26.
 //
 
-// ConnectivityMonitor continuously observes network state
-// using NWPathMonitor.
-
+/// Monitors internet connectivity using NWPathMonitor.
+///
+/// Used before executing API requests.
 import Foundation
 import Network
 

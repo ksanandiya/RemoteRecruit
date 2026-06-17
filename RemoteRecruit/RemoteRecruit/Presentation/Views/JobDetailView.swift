@@ -5,47 +5,61 @@
 //  Created by Kinjal Ughreja on 16/06/26.
 //
 
+/// Displays complete job information.
+///
+/// Includes:
+/// - Title
+/// - Company
+/// - Category
+/// - HTML Description
+/// 
 import SwiftUI
 
 struct JobDetailView: View {
-
-    let job: Job
-
+    
+    @StateObject private var viewModel: JobDetailViewModel
+    
+    init(viewModel: JobDetailViewModel) {
+        _viewModel = StateObject(
+            wrappedValue: viewModel
+        )
+    }
+    
     var body: some View {
-
+        
         ScrollView {
-
+            
             VStack(
                 alignment: .leading,
                 spacing: 20
             ) {
-
-                Text(job.title)
+                
+                Text(viewModel.job.title)
                     .font(.largeTitle.bold())
-
-                Text(job.companyName)
+                
+                Text(viewModel.job.companyName)
                     .font(.title3)
                     .foregroundStyle(.secondary)
-
+                
                 HStack {
-
+                    
                     Label(
                         "Remote",
                         systemImage: "house.fill"
                     )
-
+                    
                     Spacer()
-
-                    Text(job.category)
+                    
+                    Text(viewModel.job.category)
                 }
                 .font(.subheadline)
-
+                
                 Divider()
-
+                
                 Text("Job Description")
                     .font(.headline)
-
-                Text(job.description.htmlToAttributedString)
+                
+                HTMLTextView(htmlString: viewModel.job.description)
             }
             .padding()
         }
@@ -55,5 +69,5 @@ struct JobDetailView: View {
 }
 
 #Preview {
-    JobDetailView(job: Job(id: 1, title: "IOS", companyName: "Genesis Infoweb", category: "Software",description: ""))
+//    JobDetailView(job: Job(id: 1, title: "IOS", companyName: "Genesis Infoweb", category: "Software",description: ""))
 }

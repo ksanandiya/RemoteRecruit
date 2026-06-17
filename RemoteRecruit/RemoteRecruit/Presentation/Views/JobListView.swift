@@ -5,6 +5,14 @@
 //  Created by Kinjal Ughreja on 16/06/26.
 //
 
+/// Displays list of remote jobs.
+///
+/// Features:
+/// - Search jobs
+/// - Loading indicator
+/// - Error handling
+/// - Navigation to Job Detail
+/// 
 import SwiftUI
 
 struct JobListView: View {
@@ -39,7 +47,7 @@ struct JobListView: View {
             prompt: "Search jobs or companies"
         )
         .task {
-            viewModel.fetchJobs()
+            await viewModel.fetchJobs()
         }
         .overlay {
 

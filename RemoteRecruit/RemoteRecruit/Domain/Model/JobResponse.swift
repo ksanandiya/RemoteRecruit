@@ -5,6 +5,11 @@
 //  Created by Kinjal Ughreja on 17/06/26.
 //
 
+/// API response models.
+///
+/// Contains:
+/// - JobResponse
+/// - Job model
 import Foundation
 
 struct JobResponse: Decodable {
@@ -17,6 +22,9 @@ struct Job: Decodable, Identifiable,Hashable {
     let companyName: String
     let category: String
     let description:String
+    let location:String
+    let salary:String
+    let logo:String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -24,5 +32,8 @@ struct Job: Decodable, Identifiable,Hashable {
         case category
         case companyName = "company_name"
         case description
+        case location = "candidate_required_location"
+        case salary
+        case logo = "company_logo"
     }
 }

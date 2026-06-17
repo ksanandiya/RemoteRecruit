@@ -5,6 +5,11 @@
 //  Created by Kinjal Ughreja on 16/06/26.
 //
 
+/// Business logic layer.
+///
+/// Retrieves jobs from repository
+/// and returns them to presentation layer.
+/// 
 import Foundation
 
 protocol GetJobsUseCaseProtocol {

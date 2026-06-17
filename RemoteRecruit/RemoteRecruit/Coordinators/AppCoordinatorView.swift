@@ -5,6 +5,14 @@
 //  Created by Kinjal Ughreja on 16/06/26.
 //
 
+/// Root Navigation Container
+///
+/// Creates:
+/// - AppCoordinator
+/// - DependencyContainer
+///
+/// Injects dependecies and manage NavigationStack
+
 import SwiftUI
 
 struct AppCoordinatorView: View {
@@ -31,7 +39,7 @@ struct AppCoordinatorView: View {
             ) { job in
 
                 JobDetailView(
-                    job: job
+                    viewModel: container.makeJobDetailViewModel(job: job)
                 )
             }
         }

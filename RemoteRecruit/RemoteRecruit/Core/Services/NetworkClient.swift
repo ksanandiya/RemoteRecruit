@@ -8,6 +8,14 @@
 // NetworkClient validates connectivity before making
 // any request and throws .noInternet when offline.
 
+/// Generic networking layer.
+///
+/// Responsibilities:
+/// - Execute API requests
+/// - Decode responses
+/// - Handle errors
+/// - Check internet connectivity
+/// 
 import Foundation
 
 protocol NetworkSession {

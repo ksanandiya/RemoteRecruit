@@ -5,6 +5,11 @@
 //  Created by Kinjal Ughreja on 17/06/26.
 //
 
+/// Reusable row component for job list.
+///
+/// Displays summary information
+/// about a job.
+/// 
 import SwiftUI
 
 struct JobRow: View {

@@ -5,6 +5,14 @@
 //  Created by Kinjal Ughreja on 16/06/26.
 //
 
+/// Network related errors.
+///
+/// Examples:
+/// - Invalid URL
+/// - No Internet
+/// - Invalid Response
+/// - Decoding Failure
+
 import Foundation
 
 enum NetworkError: LocalizedError, Equatable {
