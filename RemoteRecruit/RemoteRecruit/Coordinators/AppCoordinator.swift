@@ -19,4 +19,9 @@ final class AppCoordinator:ObservableObject {
     func popToRoot() {
         path = NavigationPath()
     }
+    func showJobDetail(
+            _ job: Job
+    ) {
+        path.append(job)
+    }
 }

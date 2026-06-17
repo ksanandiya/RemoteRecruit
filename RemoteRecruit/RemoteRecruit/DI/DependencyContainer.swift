@@ -22,30 +22,31 @@ final class DependencyContainer {
     ConnectivityMonitor()
     
     lazy var networkClient:NetworkClientProtocol =
-            NetworkClient(
+    NetworkClient(
         environment: environment,
         connectivityMonitor:
             connectivityMonitor
     )
     
     lazy var jobRepository:
-            JobRepositoryProtocol =
-            JobRepository(
-                networkClient: networkClient
-            )
+    JobRepositoryProtocol =
+    JobRepository(
+        networkClient: networkClient
+    )
+    
+    lazy var getJobsUseCase:
+    GetJobsUseCaseProtocol =
+    GetJobsUseCase(
+        repository: jobRepository
+    )
+    
+    func makeJobListViewModel()
+    -> JobListViewModel {
+        
+        JobListViewModel(
+            getJobsUseCase:
+                getJobsUseCase
+        )
+    }
 
-        lazy var getJobsUseCase:
-            GetJobsUseCaseProtocol =
-            GetJobsUseCase(
-                repository: jobRepository
-            )
-
-        func makeJobListViewModel()
-            -> JobListViewModel {
-
-            JobListViewModel(
-                getJobsUseCase:
-                    getJobsUseCase
-            )
-        }
 }

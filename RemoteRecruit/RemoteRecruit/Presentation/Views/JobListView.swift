@@ -18,6 +18,7 @@ struct JobListView: View {
             ForEach(viewModel.filteredJobs) { job in
 
                 Button {
+                    coordinator.showJobDetail(job)
 
                 } label: {
 

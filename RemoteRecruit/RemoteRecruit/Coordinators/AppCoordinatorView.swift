@@ -20,11 +20,20 @@ struct AppCoordinatorView: View {
         NavigationStack(
             path: $coordinator.path
         ) {
+            
+            JobListView(
+                viewModel:
+                    container
+                    .makeJobListViewModel()
+            )
+            .navigationDestination(
+                for: Job.self
+            ) { job in
 
-            JobListView(viewModel:
-                                container
-                                .makeJobListViewModel()
-                        )
+                JobDetailView(
+                    job: job
+                )
+            }
         }
         .environmentObject(
             coordinator

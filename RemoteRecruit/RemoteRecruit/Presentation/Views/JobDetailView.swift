@@ -8,11 +8,52 @@
 import SwiftUI
 
 struct JobDetailView: View {
+
+    let job: Job
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+
+        ScrollView {
+
+            VStack(
+                alignment: .leading,
+                spacing: 20
+            ) {
+
+                Text(job.title)
+                    .font(.largeTitle.bold())
+
+                Text(job.companyName)
+                    .font(.title3)
+                    .foregroundStyle(.secondary)
+
+                HStack {
+
+                    Label(
+                        "Remote",
+                        systemImage: "house.fill"
+                    )
+
+                    Spacer()
+
+                    Text(job.category)
+                }
+                .font(.subheadline)
+
+                Divider()
+
+                Text("Job Description")
+                    .font(.headline)
+
+                Text(job.description.htmlToAttributedString)
+            }
+            .padding()
+        }
+        .navigationTitle("Job Details")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
-    JobDetailView()
+    JobDetailView(job: Job(id: 1, title: "IOS", companyName: "Genesis Infoweb", category: "Software",description: ""))
 }
