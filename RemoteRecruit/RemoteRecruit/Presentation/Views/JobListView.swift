@@ -10,28 +10,14 @@ import SwiftUI
 struct JobListView: View {
 
     @StateObject var viewModel: JobListViewModel
-
     @EnvironmentObject var coordinator: AppCoordinator
 
     var body: some View {
 
         List {
-
-            headerSection
-                .listRowInsets(
-                    EdgeInsets(
-                        top: 0,
-                        leading: 0,
-                        bottom: 16,
-                        trailing: 0
-                    )
-                )
-                .listRowSeparator(.hidden)
-
-            ForEach(viewModel.jobs) { job in
+            ForEach(viewModel.filteredJobs) { job in
 
                 Button {
-
 
                 } label: {
 
@@ -44,6 +30,13 @@ struct JobListView: View {
         .listStyle(.plain)
         .navigationTitle("Jobs")
         .navigationBarTitleDisplayMode(.large)
+        .searchable(
+            text: $viewModel.searchText,
+            placement: .navigationBarDrawer(
+                displayMode: .always
+            ),
+            prompt: "Search jobs or companies"
+        )
         .task {
             viewModel.fetchJobs()
         }
@@ -69,24 +62,6 @@ struct JobListView: View {
 
             Text(viewModel.errorMessage ?? "")
         }
-    }
-
-    private var headerSection: some View {
-
-        VStack(
-            alignment: .leading,
-            spacing: 8
-        ) {
-
-            Text("Find Your Next Opportunity")
-                .font(.title.bold())
-
-            Text(
-                "\(viewModel.jobs.count) jobs available"
-            )
-            .foregroundStyle(.secondary)
-        }
-        .padding()
     }
 }
 

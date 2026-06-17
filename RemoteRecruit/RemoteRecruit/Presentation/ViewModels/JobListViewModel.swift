@@ -13,18 +13,26 @@ final class JobListViewModel:ObservableObject {
     @Published var jobs: [Job] = []
     @Published var isLoading = false
     @Published var errorMessage: String?
-
+    @Published var searchText = ""
+    
     private let getJobsUseCase:
-        GetJobsUseCaseProtocol
-   
-    init(
-        getJobsUseCase:
-        GetJobsUseCaseProtocol
-    ) {
-        self.getJobsUseCase =
-            getJobsUseCase
+    GetJobsUseCaseProtocol
+    
+    var filteredJobs: [Job] {
+        guard !searchText.isEmpty else {
+            return jobs
+        }
+        
+        return jobs.filter {
+            $0.title.localizedCaseInsensitiveContains(searchText) ||
+            $0.companyName.localizedCaseInsensitiveContains(searchText)
+        }
     }
-
+    
+    init(getJobsUseCase:GetJobsUseCaseProtocol) {
+        self.getJobsUseCase = getJobsUseCase
+    }
+    
     func fetchJobs() {
         Task {
             do {
