@@ -48,13 +48,10 @@ struct JobRow: View {
 
             HStack {
 
-                Label(
-                    "Remote",
-                    systemImage: "house.fill"
-                )
-
+                Text(job.location).font(.subheadline)
                 Spacer()
-
+                Text(job.salary).font(.subheadline)
+                Spacer()
                 Image(systemName: "chevron.right")
                     .foregroundStyle(.secondary)
             }

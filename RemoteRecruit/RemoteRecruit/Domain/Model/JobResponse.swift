@@ -24,7 +24,6 @@ struct Job: Decodable, Identifiable,Hashable {
     let description:String
     let location:String
     let salary:String
-    let logo:String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -34,6 +33,5 @@ struct Job: Decodable, Identifiable,Hashable {
         case description
         case location = "candidate_required_location"
         case salary
-        case logo = "company_logo"
     }
 }

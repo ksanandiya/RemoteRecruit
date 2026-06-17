@@ -38,19 +38,20 @@ struct JobDetailView: View {
                     .font(.largeTitle.bold())
                 
                 Text(viewModel.job.companyName)
+                    .font(.title)
+                    .foregroundStyle(.primary)
+                
+                Text(viewModel.job.category)
                     .font(.title3)
                     .foregroundStyle(.secondary)
-                
                 HStack {
                     
-                    Label(
-                        "Remote",
-                        systemImage: "house.fill"
-                    )
-                    
+                    Text(viewModel.job.location)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
                     Spacer()
-                    
-                    Text(viewModel.job.category)
+                    Text(viewModel.job.salary).font(.subheadline)
+                        .foregroundStyle(.secondary)
                 }
                 .font(.subheadline)
                 
