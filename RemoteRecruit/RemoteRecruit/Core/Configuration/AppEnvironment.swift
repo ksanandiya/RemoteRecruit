@@ -10,7 +10,6 @@ import Foundation
 enum AppEnvironment {
 
     static var current: EnvironmentProtocol {
-
         #if DEBUG
         return StagingEnvironment()
         #else

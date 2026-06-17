@@ -12,8 +12,6 @@ final class AppCoordinator:ObservableObject {
     @Published var path =
         NavigationPath()
 
-
-
     func pop() {
         path.removeLast()
     }

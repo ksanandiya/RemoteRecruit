@@ -16,7 +16,7 @@ final class JobListViewModel:ObservableObject {
 
     private let getJobsUseCase:
         GetJobsUseCaseProtocol
-
+   
     init(
         getJobsUseCase:
         GetJobsUseCaseProtocol

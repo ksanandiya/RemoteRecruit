@@ -49,12 +49,10 @@ final class NetworkClient: NetworkClientProtocol {
     func request<T: Decodable>(
         endpoint: Endpoint
     ) async throws -> T {
-        guard connectivityMonitor
-            .isConnected
-        else {
-            
+        guard connectivityMonitor.isConnected else {
             throw NetworkError.noInternet
         }
+        
         guard var components = URLComponents(
             string: environment.baseURL + endpoint.path
         ) else {

@@ -11,17 +11,12 @@ protocol EnvironmentProtocol {
     var baseURL: String { get }
 }
 
-struct ProductionEnvironment:
-EnvironmentProtocol {
+struct ProductionEnvironment:EnvironmentProtocol {
 
-    let baseURL =
-        "https://remotive.com"
+    let baseURL = "https://remotive.com"
 }
 
+struct StagingEnvironment:EnvironmentProtocol {
 
-struct StagingEnvironment:
-EnvironmentProtocol {
-
-    let baseURL =
-        "https://remotive.com"
+    let baseURL = "https://remotive.com"
 }
