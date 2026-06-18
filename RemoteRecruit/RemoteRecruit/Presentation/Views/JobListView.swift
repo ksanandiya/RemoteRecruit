@@ -74,8 +74,8 @@ struct JobListView: View {
     }
 }
 
-//#Preview {
-//    JobListView(
-//        viewModel: JobListViewModel()
-//    )
-//}
+#Preview {
+    JobListView(
+        viewModel: DependencyContainer().makeJobListViewModel()
+    )
+}

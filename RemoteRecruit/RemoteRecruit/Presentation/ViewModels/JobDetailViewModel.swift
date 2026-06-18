@@ -7,7 +7,8 @@
 
 import SwiftUI
 import Combine
-
+/// ViewModel for Job Detail screen
+///
 @MainActor
 final class JobDetailViewModel: ObservableObject {
 
