@@ -9,24 +9,31 @@
 @testable import RemoteRecruit
 import XCTest
 
+@MainActor
 final class JobDetailViewModelTests:
-XCTestCase {
+    XCTestCase {
+    
+    func testInit() async {
+        let useCase = MockGetJobsUseCase()
 
-    func testInit() {
+        useCase.jobs = [.mock]
 
+        let sut = JobListViewModel(getJobsUseCase: useCase)
+
+        await sut.fetchJobs()
+        
         let vm =
         JobDetailViewModel(
-            job: .mock
+            job: sut.jobs.first ?? .mock
         )
+        
+        XCTAssertEqual(vm.job.id,1)
+        
+        XCTAssertEqual(vm.job.title,"iOS Engineer")
+        
+        XCTAssertEqual(vm.job.companyName,"Genesis Infoweb")
+        
+        XCTAssertEqual(vm.job.category,"Software Development")
 
-        XCTAssertEqual(
-            vm.job.id,
-            1
-        )
-
-        XCTAssertEqual(
-            vm.job.title,
-            "iOS Engineer"
-        )
     }
 }

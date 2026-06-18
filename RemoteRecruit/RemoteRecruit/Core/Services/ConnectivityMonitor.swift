@@ -17,20 +17,14 @@ protocol ConnectivityMonitorProtocol {
 final class ConnectivityMonitor: ConnectivityMonitorProtocol {
 
     private let monitor = NWPathMonitor()
-    private let queue = DispatchQueue(
-        label: "ConnectivityMonitor"
-    )
+    private let queue = DispatchQueue(label: "ConnectivityMonitor")
 
     private(set) var isConnected: Bool = true
 
     init() {
-
         monitor.pathUpdateHandler = { [weak self] path in
-
-            DispatchQueue.main.async {
-
-                self?.isConnected =
-                    path.status == .satisfied
+            Task { @MainActor in
+                self?.isConnected = path.status == .satisfied
             }
         }
 
@@ -38,6 +32,7 @@ final class ConnectivityMonitor: ConnectivityMonitorProtocol {
     }
 
     deinit {
+        monitor.pathUpdateHandler = nil
         monitor.cancel()
     }
 }

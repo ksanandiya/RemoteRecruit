@@ -64,5 +64,5 @@ struct JobDetailView: View {
 }
 
 #Preview {
-//    JobDetailView(job: Job(id: 1, title: "IOS", companyName: "Genesis Infoweb", category: "Software",description: ""))
+    JobDetailView(viewModel: JobDetailViewModel(job: Job(id: 1, title: "IOS", companyName: "Genesis Infoweb", category: "Software",description: "",location: "Remote",salary: "100$")))
 }

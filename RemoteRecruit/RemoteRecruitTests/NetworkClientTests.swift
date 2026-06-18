@@ -9,6 +9,7 @@
 @testable import RemoteRecruit
 import XCTest
 
+@MainActor
 final class NetworkClientTests: XCTestCase {
 
     func testRequestSuccess() async throws {

@@ -8,7 +8,7 @@
 
 @testable import RemoteRecruit
 import XCTest
-
+@MainActor
 final class JobModelTests: XCTestCase {
 
     func testJobDecoding() throws {
@@ -34,7 +34,6 @@ final class JobModelTests: XCTestCase {
         XCTAssertEqual(job.companyName, "Acme")
         XCTAssertEqual(job.location, "Worldwide")
     }
-
     func testHashable() {
         let set = Set([Job.mock])
         XCTAssertEqual(set.count, 1)
@@ -43,7 +42,6 @@ final class JobModelTests: XCTestCase {
     func testIdentifiable() {
         XCTAssertEqual(Job.mock.id, 1)
     }
-
     func testResponseDecode() throws {
 
         let json = """

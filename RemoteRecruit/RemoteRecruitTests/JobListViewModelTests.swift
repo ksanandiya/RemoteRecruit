@@ -10,21 +10,15 @@
 import XCTest
 
 @MainActor
-final class JobListViewModelTests:
-XCTestCase {
+final class JobListViewModelTests:XCTestCase {
 
-    func testFetchJobsSuccess()
-    async {
+    func testFetchJobsSuccess() async {
 
-        let useCase =
-        MockGetJobsUseCase()
+        let useCase = MockGetJobsUseCase()
 
         useCase.jobs = [.mock]
 
-        let sut =
-        JobListViewModel(
-            getJobsUseCase: useCase
-        )
+        let sut = JobListViewModel(getJobsUseCase: useCase)
 
         await sut.fetchJobs()
 
@@ -38,19 +32,14 @@ XCTestCase {
         )
     }
 
-    func testFetchJobsFailure()
-    async {
+    func testFetchJobsFailure() async {
 
-        let useCase =
-        MockGetJobsUseCase()
+        let useCase = MockGetJobsUseCase()
 
-        useCase.error =
-        NetworkError.noInternet
+        useCase.error = NetworkError.noInternet
 
-        let sut =
-        JobListViewModel(
-            getJobsUseCase: useCase
-        )
+        let sut = JobListViewModel(
+            getJobsUseCase: useCase)
 
         await sut.fetchJobs()
 
@@ -59,25 +48,19 @@ XCTestCase {
         )
     }
 
-    func testSearchFiltering() {
+    func testSearchFiltering() async {
+        let useCase = MockGetJobsUseCase()
 
-        let useCase =
-        MockGetJobsUseCase()
+        useCase.jobs = [.mock]
 
-        let sut =
-        JobListViewModel(
-            getJobsUseCase: useCase
-        )
+        let sut = JobListViewModel(getJobsUseCase: useCase)
 
-        sut.jobs = [
-            .mock
-        ]
+        await sut.fetchJobs()
 
         sut.searchText = "iOS"
 
         XCTAssertEqual(
             sut.filteredJobs.count,
-            1
-        )
+            1)
     }
 }

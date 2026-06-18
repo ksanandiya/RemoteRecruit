@@ -16,7 +16,7 @@ struct JobResponse: Codable {
     let jobs: [Job]
 }
 
-struct Job: Codable, Identifiable,Hashable {
+struct Job: Codable, Identifiable,Hashable,Equatable {
     let id: Int
     let title: String
     let companyName: String

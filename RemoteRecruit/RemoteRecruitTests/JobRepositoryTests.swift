@@ -9,6 +9,7 @@
 @testable import RemoteRecruit
 import XCTest
 
+@MainActor
 final class JobRepositoryTests: XCTestCase {
 
     func testFetchJobsSuccess() async throws {
