@@ -17,14 +17,8 @@ import SwiftUI
 
 struct JobDetailView: View {
     
-    @StateObject private var viewModel: JobDetailViewModel
-    
-    init(viewModel: JobDetailViewModel) {
-        _viewModel = StateObject(
-            wrappedValue: viewModel
-        )
-    }
-    
+    @StateObject var viewModel: JobDetailViewModel
+   
     var body: some View {
         
         ScrollView {

@@ -12,11 +12,11 @@
 /// - Job model
 import Foundation
 
-struct JobResponse: Decodable {
+struct JobResponse: Codable {
     let jobs: [Job]
 }
 
-struct Job: Decodable, Identifiable,Hashable {
+struct Job: Codable, Identifiable,Hashable {
     let id: Int
     let title: String
     let companyName: String
