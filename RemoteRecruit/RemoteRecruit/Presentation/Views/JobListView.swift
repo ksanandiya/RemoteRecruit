@@ -27,16 +27,18 @@ struct JobListView: View {
 
                 Button {
                     coordinator.showJobDetail(job)
-
                 } label: {
-
                     JobRow(job: job)
                 }
                 .buttonStyle(.plain)
+                .listRowInsets(EdgeInsets())
                 .listRowSeparator(.hidden)
+                .listRowBackground(Color.clear)
             }
         }
         .listStyle(.plain)
+        .scrollContentBackground(.hidden)
+        .background(Color(.systemGroupedBackground))
         .navigationTitle("Jobs")
         .navigationBarTitleDisplayMode(.large)
         .searchable(

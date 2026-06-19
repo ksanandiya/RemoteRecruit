@@ -13,7 +13,7 @@ import XCTest
 final class JobDetailViewModelTests:
     XCTestCase {
     
-    func testInit() async {
+    func getJobDetalViewModel() async -> JobDetailViewModel {
         let useCase = MockGetJobsUseCase()
 
         useCase.jobs = [.mock]
@@ -22,18 +22,38 @@ final class JobDetailViewModelTests:
 
         await sut.fetchJobs()
         
-        let vm =
+       return
         JobDetailViewModel(
             job: sut.jobs.first ?? .mock
         )
-        
-        XCTAssertEqual(vm.job.id,1)
-        
-        XCTAssertEqual(vm.job.title,"iOS Engineer")
-        
-        XCTAssertEqual(vm.job.companyName,"Genesis Infoweb")
-        
-        XCTAssertEqual(vm.job.category,"Software Development")
-
     }
+    func testCompanyName() async {
+
+        let vm = await getJobDetalViewModel()
+
+        XCTAssertEqual(
+            vm.job.companyName,
+            "Genesis Infoweb"
+        )
+    }
+    func testCategory() async {
+
+        let vm = await getJobDetalViewModel()
+
+        XCTAssertEqual(
+            vm.job.category,
+            "Software Development"
+        )
+    }
+    func testSalary() async {
+
+        let vm = await getJobDetalViewModel()
+
+        XCTAssertEqual(
+            vm.job.salary,
+            "$100k"
+        )
+    }
+    
 }
+

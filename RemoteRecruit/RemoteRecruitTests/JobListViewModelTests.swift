@@ -63,4 +63,51 @@ final class JobListViewModelTests:XCTestCase {
             sut.filteredJobs.count,
             1)
     }
+    func testEmptySearchReturnsAllJobs() async {
+
+        let useCase = MockGetJobsUseCase()
+        useCase.jobs = [.mock]
+
+        let sut = JobListViewModel(getJobsUseCase: useCase)
+
+        await sut.fetchJobs()
+
+        sut.searchText = ""
+
+        XCTAssertEqual(
+            sut.filteredJobs.count,
+            sut.jobs.count
+        )
+    }
+    func testSearchByCompany() async {
+
+        let useCase = MockGetJobsUseCase()
+        useCase.jobs = [.mock]
+
+        let sut = JobListViewModel(getJobsUseCase: useCase)
+
+        await sut.fetchJobs()
+
+        sut.searchText = "Genesis"
+
+        XCTAssertEqual(
+            sut.filteredJobs.count,
+            1
+        )
+    }
+    func testSearchReturnsNoResult() async {
+
+        let useCase = MockGetJobsUseCase()
+        useCase.jobs = [.mock]
+
+        let sut = JobListViewModel(getJobsUseCase: useCase)
+
+        await sut.fetchJobs()
+
+        sut.searchText = "Android"
+
+        XCTAssertTrue(
+            sut.filteredJobs.isEmpty
+        )
+    }
 }

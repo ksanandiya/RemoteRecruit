@@ -18,60 +18,95 @@ struct JobRow: View {
 
     var body: some View {
 
-        VStack(
-            alignment: .leading,
-            spacing: 12
-        ) {
+        VStack(alignment: .leading, spacing: 16) {
+
+            // MARK: Header
+
+            HStack(alignment: .top, spacing: 14) {
+
+                ZStack {
+                    Circle()
+                        .fill(Color.blue.opacity(0.15))
+                        .frame(width: 56, height: 56)
+
+                    Image(systemName: "building.2.fill")
+                        .font(.title2)
+                        .foregroundStyle(.blue)
+                }
+
+                VStack(alignment: .leading, spacing: 8) {
+
+                    Text(job.companyName)
+                        .font(.headline)
+                        .lineLimit(1)
+
+                    Text(job.title)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(2)
+
+                    Text(job.category)
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.blue)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
+                        .background(Color.blue.opacity(0.12))
+                        .clipShape(Capsule())
+                }
+
+                Spacer()
+            }
+
+            Divider()
+
+            // MARK: Footer
 
             HStack {
 
-                Image(systemName: "briefcase.fill")
-                    .font(.title3)
-                    .foregroundStyle(.blue)
-
-                Spacer()
-
-                Text(job.category)
-                    .font(.caption)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 4)
-                    .background(.blue.opacity(0.1))
-                    .clipShape(Capsule())
-            }
-
-            Text(job.title)
-                .font(.headline)
-
-            Text(job.companyName)
-                .font(.subheadline)
+                Label {
+                    Text(job.location)
+                        .lineLimit(2)
+                } icon: {
+                    Image(systemName: "mappin.and.ellipse")
+                }
+                .font(.footnote)
                 .foregroundStyle(.secondary)
 
-            HStack {
+                Spacer()
 
-                Text(job.location).font(.subheadline)
+                if !job.salary.isEmpty {
+                    Text(job.salary)
+                        .lineLimit(1)
+                    .font(.footnote)
+                    .foregroundStyle(.green)
+                }
+
                 Spacer()
-                Text(job.salary).font(.subheadline)
-                Spacer()
+
                 Image(systemName: "chevron.right")
+                    .font(.caption.bold())
                     .foregroundStyle(.secondary)
+                    .frame(width: 30, height: 30)
+                    .background(Color.gray.opacity(0.1))
+                    .clipShape(Circle())
             }
-            .font(.caption)
         }
-        .padding()
+        .padding(18)
         .background(
-            RoundedRectangle(
-                cornerRadius: 16
-            )
-            .fill(Color(.systemBackground))
+            RoundedRectangle(cornerRadius: 18)
+                .fill(Color(.systemBackground))
         )
         .overlay(
-            RoundedRectangle(
-                cornerRadius: 16
-            )
-            .stroke(
-                Color.gray.opacity(0.15),
-                lineWidth: 1
-            )
+            RoundedRectangle(cornerRadius: 18)
+                .stroke(Color.gray.opacity(0.12), lineWidth: 1)
         )
+        .shadow(
+            color: .black.opacity(0.05),
+            radius: 8,
+            x: 0,
+            y: 3
+        )
+        .padding(.horizontal)
+        .padding(.vertical, 6)
     }
 }

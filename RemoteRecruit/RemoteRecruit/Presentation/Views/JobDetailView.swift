@@ -16,51 +16,48 @@
 import SwiftUI
 
 struct JobDetailView: View {
-    
+
     @StateObject var viewModel: JobDetailViewModel
-   
+
     var body: some View {
         
         ScrollView {
             
-            VStack(
-                alignment: .leading,
-                spacing: 20
-            ) {
+            VStack(spacing: 20) {
                 
-                Text(viewModel.job.title)
-                    .font(.largeTitle.bold())
+                JobDetailHeaderView(job: viewModel.job)
                 
-                Text(viewModel.job.companyName)
-                    .font(.title)
-                    .foregroundStyle(.primary)
-                
-                Text(viewModel.job.category)
-                    .font(.title3)
-                    .foregroundStyle(.secondary)
-                HStack {
+                VStack(alignment: .leading, spacing: 16) {
                     
-                    Text(viewModel.job.location)
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                    Spacer()
-                    Text(viewModel.job.salary).font(.subheadline)
-                        .foregroundStyle(.secondary)
-                }
-                .font(.subheadline)
-                
-                Divider()
-                
-                Text("Job Description")
+                    Label(
+                        "Job Description",
+                        systemImage: "doc.text.fill"
+                    )
                     .font(.headline)
-                
-                HTMLTextView(htmlString: viewModel.job.description)
+                    
+                    Divider()
+                    
+                    HTMLTextView(
+                        htmlString: viewModel.job.description
+                    )
+                }
+                .padding()
+                .background(Color(.systemBackground))
+                .clipShape(RoundedRectangle(cornerRadius: 22))
+                .shadow(
+                    color: .black.opacity(0.05),
+                    radius: 8,
+                    y: 3
+                )
             }
             .padding()
         }
+        .background(Color(.systemGroupedBackground))
         .navigationTitle("Job Details")
         .navigationBarTitleDisplayMode(.inline)
     }
+
+    
 }
 
 #Preview {
